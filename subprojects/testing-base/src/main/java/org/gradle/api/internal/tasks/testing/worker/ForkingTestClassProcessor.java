@@ -107,6 +107,7 @@ public class ForkingTestClassProcessor implements TestClassProcessor {
 
     RemoteTestClassProcessor forkProcess() {
         WorkerProcessBuilder builder = workerFactory.create(new TestWorker(processorFactory));
+        builder.setUseLegacyAddOpens(false);
         builder.setBaseName("Gradle Test Executor");
         builder.setImplementationClasspath(getTestWorkerImplementationClasspath());
         builder.setImplementationModulePath(getTestWorkerImplementationModulePath());

@@ -59,6 +59,18 @@ public interface WorkerProcessBuilder extends WorkerProcessSettings {
 
     void enableJvmMemoryInfoPublishing(boolean shouldPublish);
 
+    // TODO: Remove this option for Gradle 8.0 and do not use the args at all.
+    // We are leaving these args enabled for most worker types in order to reduce breaking changes for those using
+    // reflection already in their workers. In 8.0, we will remove these args entirely from all workers.
+    /**
+     * Specify whether the {@code --add-opens} command line args specified by
+     * {@link org.gradle.internal.jvm.JpmsConfiguration#GRADLE_WORKER_JPMS_ARGS}
+     * should be used for the process-to-build.
+     *
+     * @param useLegacyAddOpens Whether to use the add-opens args.
+     */
+    void setUseLegacyAddOpens(boolean useLegacyAddOpens);
+
     /**
      * Creates the worker process. The process is not started until {@link WorkerProcess#start()} is called.
      *
